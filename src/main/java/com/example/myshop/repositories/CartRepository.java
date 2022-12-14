@@ -15,7 +15,7 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
     List<Cart> findByPersonId(int id);
 
     @Modifying
-    @Query(value = "delete from productCart where productId=?1 and personId=?2", nativeQuery = true)
+    @Query(value = "delete from product_Cart where product_Id=?1 and person_Id=?2", nativeQuery = true)
     void deleteCartById(int id, int personId);
 
 }
