@@ -18,11 +18,10 @@
     <a href="#" class="logo">Serf<span>.</span></a>
 
     <nav class="navbar">
-        <a href="#home">home</a>
-        <a href="#about">about</a>
-        <a href="#products">products</a>
-        <a href="#review">review</a>
-        <a href="#contact">contact</a>
+        <a href="/index">home</a>
+        <a href="/orders">orders</a>
+
+        <a href="/product">products</a>
     </nav>
 
     <div class="icons">
@@ -51,7 +50,7 @@
             <p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>
             </div>
             <div class="image" th:each="img : ${product.getImageList()}">
-                <img th:src="'/img/' + ${img.getFileName()}" width="300px" alt="Товар">
+                <img th:src="'/img/' + ${img.getFileName()}" alt="Товар">
             </div>
         </div>
     </div>
@@ -62,17 +61,14 @@
 
         <div class="box">
             <h3>quick links</h3>
-            <a href="#">home</a>
-            <a href="#">about</a>
-            <a href="#">products</a>
-            <a href="#">review</a>
-            <a href="#">contact</a>
+            <a href="/product">products</a>
+
         </div>
 
         <div class="box">
             <h3>extra links</h3>
-            <a href="#">my account</a>
-            <a href="#">my order</a>
+            <a href="/index">my account</a>
+            <a href="/orders">my order</a>
             <a href="#">my favorite</a>
         </div>
 

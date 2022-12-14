@@ -18,11 +18,10 @@
     <a href="#" class="logo">Serf<span>.</span></a>
 
     <nav class="navbar">
-        <a href="#home">home</a>
-        <a href="#about">about</a>
-        <a href="#products">products</a>
-        <a href="#review">review</a>
-        <a href="#contact">contact</a>
+        <a href="/index">home</a>
+        <a href="/orders">orders</a>
+
+        <a href="/product">products</a>
     </nav>
 
     <div class="icons">
@@ -42,7 +41,7 @@
     <div class="box-container">
         <div class="box" th:each="product : ${cartProduct}">
             <div class="image">
-                <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+                <img th:src="'/img/' + ${product.imageList[0].getFileName()}">
             </div>
             <div class="price">
                 <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
@@ -64,17 +63,14 @@
 
         <div class="box">
             <h3>quick links</h3>
-            <a href="#">home</a>
-            <a href="#">about</a>
-            <a href="#">products</a>
-            <a href="#">review</a>
-            <a href="#">contact</a>
+            <a href="/product">products</a>
+
         </div>
 
         <div class="box">
             <h3>extra links</h3>
-            <a href="#">my account</a>
-            <a href="#">my order</a>
+            <a href="/index">my account</a>
+            <a href="/orders">my order</a>
             <a href="#">my favorite</a>
         </div>
 
