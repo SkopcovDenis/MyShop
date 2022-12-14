@@ -3,61 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href=" https://start.spring.io/images/icon-48x48.png"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/js/script.js}">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Список товаров: </title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/product/search}">
-<fieldset>
-    <legend>Выберите параметры для сортировки, поиска, фильтрации</legend>
-    <br>
-    <label for="search">Поиск по наименованию</label>
-    <input type="search" name="search"  th:value="*{valueSearch}" id="search">
-    <br>
-    <p>Цена, ₽</p>
-    <label for="from">От</label>
-    <input type="text" name="from"  th:value="*{valuePriceFrom}" id="from">
-    <label for="to">До</label>
-    <input type="text" name="to"  th:value="*{valuePriceTo}" id="to">
-    <br>
-    <br>
-    <input type="radio" id="ascendingPrice" name="price" value="sortedByAscendingPrice">
-    <label for="ascendingPrice">Отсортировать по возрастанию цены</label>
-    <br>
-    <br>
-    <input type="radio" id="descendingPrice" name="price" value="sortedByDescendingPrice">
-    <label for="descendingPrice">Отсортировать по убыванию цены</label>
-    <p>Категория товаров: </p>
-    <input type="radio" id="furniture" name="category" value="furniture">
-    <label for="furniture">Мебель</label>
-    <br>
-    <br>
-    <input type="radio" id="appliances" name="category" value="appliances">
-    <label for=appliances>Бытовая техника</label>
-    <br>
-    <br>
-    <input type="radio" id="clothes" name="category" value="clothes">
-    <label for="clothes">Одежка</label>
-    <br>
-    <br>
-    <input type="submit" value="Найти">
-</fieldset>
-</form>
-<h3>Результат: </h3>
-<div th:each="product : ${searchProduct}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-    <br>
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-</div>
+<header>
+    <input type="checkbox" name="" id="toggler">
+    <label for="toggler" class="fas fa-bars"></label>
+    <a href="#" class="logo">Serf<span>.</span></a>
+    <nav class="navbar">
+        <a href="/index">home</a>
+        <a href="#">about</a>
+        <a href="/product">products</a>
+        <a href="#review">review</a>
+        <a href="#contact">contact</a>
+    </nav>
+
+    <div class="icons">
+        <a href="#" class="fas fa-heart"></a>
+        <a href="/orders" class="fas fa-shopping-cart"></a>
+        <a href="/auth/login" class="fas fa-user"></a>
+    </div>
+</header>
+<br>
+<br>
+<section class="about" id="about">
+
+    <h1 class="heading"> <span> about </span> us </h1>
+
+    <div class="row">
+
+        <div class="video-container">
+            <video src="/img/about-vid.mp4" autoplay muted></video>
+            <h3>freedom</h3>
+        </div>
+
+        <div class="content">
+            <h3>why choose us?</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem cumque sit nemo pariatur corporis perspiciatis aspernatur a ullam repudiandae autem asperiores quibusdam omnis commodi alias repellat illum, unde optio temporibus.</p>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium ea est commodi incidunt magni quia molestias perspiciatis, unde repudiandae quidem.</p>
+            <a href="/product" class="btn">learn more</a>
+        </div>
+
+    </div>
+
+</section>
+<section class="contact" id="contact">
+    <div class="row">
+        <form th:method="POST" th:action="@{/product/search}">
+            <h1 class="heading"><span>Выберите параметры</span> для сортировки, поиска, фильтрации</h1>
+            <br>
+            <label for="search">Поиск по наименованию</label>
+            <input type="search" name="search" class="box" th:value="*{valueSearch}" id="search">
+            <br>
+            <p>Цена, ₽</p>
+            <label for="from">От</label>
+            <input type="text" name="from" class="box" th:value="*{valuePriceFrom}" id="from">
+            <label for="to">До</label>
+            <input type="text" name="to" class="box" th:value="*{valuePriceTo}" id="to">
+            <br>
+            <br>
+            <input type="radio" id="ascendingPrice" name="price" value="sortedByAscendingPrice">
+            <label for="ascendingPrice">Отсортировать по возрастанию цены</label>
+            <br>
+            <br>
+            <input type="radio" id="descendingPrice" name="price" value="sortedByDescendingPrice">
+            <label for="descendingPrice">Отсортировать по убыванию цены</label>
+            <h2>Категория товаров: </h2>
+            <br>
+            <br>
+            <input type="radio" id="surfboard" name="category" value="surfboard">
+            <label for="surfboard">Серфборды</label>
+            <br>
+            <br>
+            <input type="radio" id="wetsuit" name="category" value="wetsuit">
+            <label for=wetsuit>Гидрокостюмы</label>
+            <br>
+            <br>
+            <input type="radio" id="watch" name="category" value="watch">
+            <label for="watch">Часы</label>
+            <br>
+            <br>
+            <input type="submit" value="Найти">
+        </form>
+    </div>
+</section>
+<section class="products" id="products">
+    <h3>Результат: </h3>
+    <div class="box-container">
+        <div class="box" th:each="product : ${searchProduct}">
+            <div class="image">
+                <img th:src="'/img/' + ${product.imageList[0].getFileName()}">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="cart-btn">add to cart</a>
+                    <a href="#" class="fas fa-share"></a>
+                </div>
+            </div>
+            <div class="content">
+                <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+                <div class="price">
+                    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <hr>
-<h3>Доступные товары: </h3>
-<div th:each="product : ${products}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-    <br>
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}" id="title"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-</div>
+<section class="products" id="products1">
+    <h3>Доступные товары: </h3>
+    <div class="box-container">
+        <div class="box" th:each="product : ${products}">
+            <div class="image">
+                <img th:src="'/img/' + ${product.imageList[0].getFileName()}">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="cart-btn">add to cart</a>
+                    <a href="#" class="fas fa-share"></a>
+                </div>
+            </div>
+            <div class="content">
+                <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"
+                   id="title"></a>
+                <div class="price">
+                    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- review section starts  -->
+
+<section class="review" id="review">
+
+    <h1 class="heading"> customer's <span>review</span></h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti asperiores laboriosam praesentium enim
+                maiores? Ad repellat voluptates alias facere repudiandae dolor accusamus enim ut odit, aliquam nesciunt
+                eaque nulla dignissimos.</p>
+            <div class="user">
+                <img src="/img/pic-1.png" alt="">
+                <div class="user-info">
+                    <h3>john deo</h3>
+                    <span>happy customer</span>
+                </div>
+            </div>
+            <span class="fas fa-quote-right"></span>
+        </div>
+
+        <div class="box">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti asperiores laboriosam praesentium enim
+                maiores? Ad repellat voluptates alias facere repudiandae dolor accusamus enim ut odit, aliquam nesciunt
+                eaque nulla dignissimos.</p>
+            <div class="user">
+                <img src="/img/pic-2.png" alt="">
+                <div class="user-info">
+                    <h3>john deo</h3>
+                    <span>happy customer</span>
+                </div>
+            </div>
+            <span class="fas fa-quote-right"></span>
+        </div>
+
+        <div class="box">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti asperiores laboriosam praesentium enim
+                maiores? Ad repellat voluptates alias facere repudiandae dolor accusamus enim ut odit, aliquam nesciunt
+                eaque nulla dignissimos.</p>
+            <div class="user">
+                <img src="/img/pic-3.png" alt="">
+                <div class="user-info">
+                    <h3>john deo</h3>
+                    <span>happy customer</span>
+                </div>
+            </div>
+            <span class="fas fa-quote-right"></span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- review section ends -->
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>quick links</h3>
+
+            <a href="#">about</a>
+            <a href="/product">products</a>
+            <a href="#">review</a>
+            <a href="#">contact</a>
+        </div>
+
+        <div class="box">
+            <h3>extra links</h3>
+            <a href="#">my account</a>
+            <a href="#">my order</a>
+            <a href="#">my favorite</a>
+        </div>
+
+        <div class="box">
+            <h3>locations</h3>
+            <a href="#">india</a>
+            <a href="#">USA</a>
+            <a href="#">japan</a>
+            <a href="#">france</a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#">+123-456-7890</a>
+            <a href="#">example@gmail.com</a>
+            <a href="#">mumbai, india - 400104</a>
+            <img src="/img/payment.png" alt="">
+        </div>
+
+    </div>
+
+</section>
 </body>
 </html>

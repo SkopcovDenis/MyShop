@@ -49,13 +49,13 @@ public class MainController {
                     // Если категория товара не пустая
                     if (!category.isEmpty()) {
                         // Если категория равная мебели
-                        if (category.equals("furniture")) {
+                        if (category.equals("surfboard")) {
                             model.addAttribute("searchProduct", productRepository.findByTitleAndCategoryOrderByPrice(search.toLowerCase(), Float.parseFloat(from), Float.parseFloat(to), 1));
                             // Если категория равная бытовой техники
-                        } else if (category.equals("appliances")) {
+                        } else if (category.equals("wetsuit")) {
                             model.addAttribute("searchProduct", productRepository.findByTitleAndCategoryOrderByPrice(search.toLowerCase(), Float.parseFloat(from), Float.parseFloat(to), 2));
                             // Если категория равная одежде
-                        } else if (category.equals("clothes")) {
+                        } else if (category.equals("watch")) {
                             model.addAttribute("searchProduct", productRepository.findByTitleAndCategoryOrderByPrice(search.toLowerCase(), Float.parseFloat(from), Float.parseFloat(to), 3));
                         }
                         // Если категория не выбрана
@@ -69,13 +69,13 @@ public class MainController {
                     // Если категория не пустая
                     if (!category.isEmpty()) {
                         // Если категория равная мебели
-                        if (category.equals("furniture")) {
+                        if (category.equals("surfboard")) {
                             model.addAttribute("searchProduct", productRepository.findByTitleAndCategoryOrderByPriceDesc(search.toLowerCase(), Float.parseFloat(from), Float.parseFloat(to), 1));
                             // Если категория равная бытовой техники
-                        } else if (category.equals("appliances")) {
+                        } else if (category.equals("wetsuit")) {
                             model.addAttribute("searchProduct", productRepository.findByTitleAndCategoryOrderByPriceDesc(search.toLowerCase(), Float.parseFloat(from), Float.parseFloat(to), 2));
                             // Если категория равная одежде
-                        } else if (category.equals("clothes")) {
+                        } else if (category.equals("watch")) {
                             model.addAttribute("searchProduct", productRepository.findByTitleAndCategoryOrderByPriceDesc(search.toLowerCase(), Float.parseFloat(from), Float.parseFloat(to), 3));
                         }
                         // Если категория не выбрана

@@ -3,27 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href=" https://start.spring.io/images/icon-48x48.png"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/js/script.js}">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Админ панель</title>
 </head>
 <body>
+<header>
+
+    <input type="checkbox" name="" id="toggler">
+    <label for="toggler" class="fas fa-bars"></label>
+
+    <a href="#" class="logo">Serf<span>.</span></a>
+
+    <nav class="navbar">
+        <a href="/index">home</a>
+        <a href="/product">products</a>
+    </nav>
+
+    <div class="icons">
+        <a href="#" class="fas fa-heart"></a>
+        <a href="/orders" class="fas fa-shopping-cart"></a>
+        <a href="/auth/login" class="fas fa-user"></a>
+    </div>
+</header>
+
 <h3>Личный кабинет администратора</h3>
-<form th:method="POST" th:action="@{/logout}">
-    <input type="submit" value="Выйти из личного кабинета">
-</form>
-<a href="/admin/product/add">Добавить товар</a>
-<h3>Каталог товаров: </h3>
-<hr/>
-<div th:each="product : ${products}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-    <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
-    <p th:text="'Описание: ' + ${product.getDescription()}"></p>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <p th:text="'Склад: ' + ${product.getWarehouse()}"></p>
-    <p th:text="'Продавец: ' + ${product.getSeller()}"></p>
-    <p th:text="'Категория товара: ' + ${product.getCategory().getName()}"></p>
-    <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">Редактировать товар</a>
-    <a th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">Удалить товар</a>
-    <hr>
+<div class="signup_link">
+    <form th:method="POST" th:action="@{/logout}">
+        <input type="submit" value="Выйти из личного кабинета">
+    </form>
 </div>
+<div class="signup_link">
+    <a href="/admin/product/add">Добавить товар</a>
+</div>
+<section class="products" id="products">
+    <h3>Каталог товаров: </h3>
+    <div class="box-container">
+        <div class="box" th:each="product : ${products}">
+            <div class="image">
+                <img th:src="'/img/' + ${product.imageList[0].getFileName()}">
+            </div>
+            <div class="price">
+                <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
+                <p th:text="'Описание: ' + ${product.getDescription()}"></p>
+                <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+                <p th:text="'Склад: ' + ${product.getWarehouse()}"></p>
+                <p th:text="'Продавец: ' + ${product.getSeller()}"></p>
+                <p th:text="'Категория товара: ' + ${product.getCategory().getName()}"></p>
+            </div>
+            <div class="signup_link">
+                <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">Редактировать товар</a>
+            </div>
+            <div class="signup_link">
+                <a th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">Удалить товар</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="/product">products</a>
+
+        </div>
+
+        <div class="box">
+            <h3>extra links</h3>
+            <a href="/index">my account</a>
+            <a href="/orders">my order</a>
+            <a href="#">my favorite</a>
+        </div>
+
+        <div class="box">
+            <h3>locations</h3>
+            <a href="#">india</a>
+            <a href="#">USA</a>
+            <a href="#">japan</a>
+            <a href="#">france</a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#">+123-456-7890</a>
+            <a href="#">example@gmail.com</a>
+            <a href="#">mumbai, india - 400104</a>
+            <img src="/img/payment.png" alt="">
+        </div>
+
+    </div>
+
+
+</section>
 </body>
 </html>
