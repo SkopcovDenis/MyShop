@@ -32,18 +32,32 @@
     </div>
 
 </header>
-<h3>Корзина товаров</h3>
-
-<div th:each="product : ${cartProduct}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-    <br>
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <a th:href="@{/cart/delete/{id}(id=${product.getId()})}">Удалить</a>
-</div>
-<h3 th:text="'Итоговая цена: ' + ${price}"></h3>
-<a href="/order/create">Оформить заказ</a>
+<br>
+<br>
+<br>
+<br>
+<br>
+<section class="products" id="products">
+    <h3>Корзина товаров</h3>
+    <div class="box-container">
+        <div class="box" th:each="product : ${cartProduct}">
+            <div class="image">
+                <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+            </div>
+            <div class="price">
+                <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+                <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+            </div>
+            <div class="signup_link">
+                <a th:href="@{/cart/delete/{id}(id=${product.getId()})}">Удалить</a>
+            </div>
+        </div>
+        <h3 th:text="'Итоговая цена: ' + ${price}"></h3>
+        <div class="signup_link">
+            <a href="/order/create">Оформить заказ</a>
+        </div>
+    </div>
+</section>
 <section class="footer">
 
     <div class="box-container">
@@ -81,7 +95,6 @@
         </div>
 
     </div>
-
 
 
 </section>
