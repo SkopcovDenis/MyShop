@@ -18,10 +18,10 @@
     <a href="#" class="logo">Serf<span>.</span></a>
 
     <nav class="navbar">
-        <a href="/index">home</a>
-        <a href="/orders">orders</a>
+        <a href="/index">Домой</a>
+        <a href="/orders">Заказы</a>
 
-        <a href="/product">products</a>
+        <a href="/product">Товары</a>
     </nav>
 
     <div class="icons">
@@ -45,10 +45,10 @@
             <span></span>
             <label for="password">Введите пароль: </label>
         </div>
-        <div class="pass">Forgot Password?</div>
+        <div class="pass">Забыли пароль?</div>
         <input type="submit" value="Войти">
         <div class="signup_link">
-            Not a member? <a href="/auth/registration">Регистрация</a>
+            Нет аккаунта? <a href="/auth/registration">Регистрация</a>
         </div>
         <div th:if="${param.error}" style="color: red">
             Неправильный логин или пароль
